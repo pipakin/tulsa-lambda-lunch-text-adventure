@@ -5,7 +5,7 @@ import scala.annotation.tailrec
 
 object Application extends GameSetup with GameParsers  {
 
-  val wrapRegEx = """(.{1,54})\s""".r
+  val wrapRegEx = """(.{1,64})\s""".r
   def printWrapLine(str: String) = println(wrapRegEx.replaceAllIn(str + "\n", m=>m.group(1)+"\n"))
 
   @tailrec
@@ -26,10 +26,10 @@ object Application extends GameSetup with GameParsers  {
           printWrapLine(newState.prompt)
           waitForCommand(newState)
         }
-      case a =>
+      case _ =>
         println()
         println("I don't know how to do that.")
-        println(a)
+        //println(failure)
         waitForCommand(currentState)
     }
   }
